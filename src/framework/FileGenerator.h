@@ -8,4 +8,3 @@ class FileGenerator
 	void CreateInputFile(int day, int part, bool isExample);
 	void RegisterSourceFile();
 };
-

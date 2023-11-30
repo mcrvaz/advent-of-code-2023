@@ -1,6 +1,9 @@
 #include <iostream>
+#include "framework/CommandLineInterface.h"
 
-int main()
+int main(int argc, char** argv)
 {
-	std::cout << "Hello World!\n";
+	auto parser = MyCLI::Parser(argc, argv);
+	auto options = parser.Parse();
+	options.Print();
 }

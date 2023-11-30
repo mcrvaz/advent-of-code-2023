@@ -30,6 +30,9 @@
     <ClCompile Include="src\utils\Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\framework\CommandLineInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\day1\Day1Part1.h">
@@ -44,9 +47,23 @@
     <ClInclude Include="src\utils\Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="third_party\inja.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\json.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\framework\CommandLineInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\CLI11.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input\day1_input.txt" />
     <Text Include="input\day1_example.txt" />
+    <Text Include="src\framework\templates\day-src-template-cpp.txt" />
+    <Text Include="src\framework\templates\day-src-template-h.txt" />
   </ItemGroup>
 </Project>

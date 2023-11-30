@@ -1,1 +1,6 @@
-C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\src\advent-of-code-2023.cpp;C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\x64\Debug\advent-of-code-2023.obj
+C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\src\framework\CommandLineInterface.cpp;C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\x64\Debug\CommandLineInterface.obj
+C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\src\framework\Runner.cpp;C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\x64\Debug\Runner.obj
+C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\src\framework\FileGenerator.cpp;C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\x64\Debug\FileGenerator.obj
+C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\src\day1\Day1Part1.cpp;C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\x64\Debug\Day1Part1.obj
+C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\src\AoC2023.cpp;C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\x64\Debug\AoC2023.obj
+C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\src\utils\Utils.cpp;C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\x64\Debug\Utils.obj

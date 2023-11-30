@@ -70,6 +70,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(MSBuildProjectDirectory)\third_party;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -100,7 +103,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -128,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\framework\CommandLineInterface.cpp" />
     <ClCompile Include="src\framework\Runner.cpp" />
     <ClCompile Include="src\framework\FileGenerator.cpp" />
     <ClCompile Include="src\day1\Day1Part1.cpp" />
@@ -135,14 +139,20 @@
     <ClCompile Include="src\utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\framework\CommandLineInterface.h" />
     <ClInclude Include="src\framework\Runner.h" />
     <ClInclude Include="src\framework\FileGenerator.h" />
     <ClInclude Include="src\day1\Day1Part1.h" />
     <ClInclude Include="src\utils\Utils.h" />
+    <ClInclude Include="third_party\CLI11.hpp" />
+    <ClInclude Include="third_party\inja.hpp" />
+    <ClInclude Include="third_party\json.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input\day1_example.txt" />
     <Text Include="input\day1_input.txt" />
+    <Text Include="src\framework\templates\day-src-template-cpp.txt" />
+    <Text Include="src\framework\templates\day-src-template-h.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
