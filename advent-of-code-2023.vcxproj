@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,7 +128,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="advent-of-code-2023.cpp" />
+    <ClCompile Include="src\framework\Runner.cpp" />
+    <ClCompile Include="src\framework\FileGenerator.cpp" />
+    <ClCompile Include="src\day1\Day1Part1.cpp" />
+    <ClCompile Include="src\AoC2023.cpp" />
+    <ClCompile Include="src\utils\Utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\framework\Runner.h" />
+    <ClInclude Include="src\framework\FileGenerator.h" />
+    <ClInclude Include="src\day1\Day1Part1.h" />
+    <ClInclude Include="src\utils\Utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="input\day1_example.txt" />
+    <Text Include="input\day1_input.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
