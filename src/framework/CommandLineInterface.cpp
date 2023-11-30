@@ -11,10 +11,9 @@ MyCLI::Options MyCLI::Parser::Parse()
 {
 	CLI::App app{ "Advent of Code 2023" };
 
-	OperationType op{};
 
-	CLI::App* execute = app.add_subcommand("execute", "A great subcommand");
-	CLI::App* create = app.add_subcommand("create", "Do you really want to stop?");
+	CLI::App* execute = app.add_subcommand("execute", "Execute a puzzle");
+	CLI::App* create = app.add_subcommand("create", "Create template for a new puzzle");
 	app.require_subcommand(1);
 
 	int day{};
@@ -26,6 +25,7 @@ MyCLI::Options MyCLI::Parser::Parse()
 		->required()
 		->check(CLI::Range(1, 25));
 
+	// TODO make this option invalid when subcommand is "create"
 	int part{};
 	execute->add_option("-p,--part", part, "Part to execute")
 		->required()
@@ -33,6 +33,7 @@ MyCLI::Options MyCLI::Parser::Parse()
 
 	app.parse(m_argc, m_argv);
 
+	OperationType op{};
 	CLI::App* subcommand = app.get_subcommand(0);
 	if (subcommand == execute)
 		op = OperationType::execute;
