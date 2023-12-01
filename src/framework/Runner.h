@@ -1,6 +1,8 @@
 #pragma once
+
 class Runner
 {
-	void Run(int day, int part);
-	void RunAll();
+public:
+	static void Run(int day, int part);
+	static void RunAll();
 };

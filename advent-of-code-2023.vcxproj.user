@@ -4,8 +4,8 @@
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>create --day 2</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>execute -d 1 -p 1</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <RemoteDebuggerCommandArguments>create --day 2</RemoteDebuggerCommandArguments>
+    <RemoteDebuggerCommandArguments>execute -d 1 -p 1</RemoteDebuggerCommandArguments>
   </PropertyGroup>
 </Project>
