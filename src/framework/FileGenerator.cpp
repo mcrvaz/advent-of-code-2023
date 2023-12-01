@@ -90,7 +90,7 @@ Path FileGenerator::CreateSourceFile(
 Path FileGenerator::CreateInputFile(const Path& path, int day, int part, bool isExample) const
 {
 	const std::string suffix = isExample ? "example" : "input";
-	const std::string fileName = std::format("day{}_{}.txt", day, suffix);
+	const std::string fileName = std::format("day{}part{}_{}.txt", day, part, suffix);
 	Path filePath{ path };
 	filePath.append(fileName);
 	if (std::filesystem::exists(filePath))

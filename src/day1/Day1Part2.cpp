@@ -2,14 +2,13 @@
 #include "../utils/Utils.h"
 #include <regex>
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <format>
-#include <ranges>;
 
 int Day1Part2::solve()
 {
-	const std::vector<std::string> lines = *Utils::read_lines("input/day1_input.txt").get();
-	const std::map<std::string, int> textDigits{
+	const std::vector<std::string> lines = *Utils::read_lines("input/day1part1_input.txt").get();
+	const std::unordered_map<std::string, int> textDigits{
 		{ "one", 1 },
 		{ "two", 2 },
 		{ "three", 3 },
@@ -51,12 +50,14 @@ int Day1Part2::solve()
 		sum += num;
 	}
 
+	// answer 55343
+	std::cout << sum;
+
 	return sum;
 }
-	//// answer 55343
-	//std::cout << sum;
 
-int Day1Part2::stoi(const std::string& num, const std::map<std::string, int>& textDigits) const
+
+int Day1Part2::stoi(const std::string& num, const std::unordered_map<std::string, int>& textDigits) const
 {
 	if (textDigits.contains(num))
 		return textDigits.at(num);

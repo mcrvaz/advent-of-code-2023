@@ -5,7 +5,7 @@
 
 int Day1Part1::solve()
 {
-	const std::vector<std::string> lines = *Utils::read_lines("input/day1_input.txt").get();
+	const std::vector<std::string> lines = *Utils::read_lines("input/day1part1_input.txt").get();
 	const std::regex rgx("(\\d)");
 	std::smatch matches;
 	int sum{};

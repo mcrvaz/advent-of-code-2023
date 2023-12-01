@@ -159,17 +159,19 @@
   <ItemGroup Label="auto_generated">
     <ClCompile Include="src\day1\Day1Part1.cpp" />
     <ClInclude Include="src\day1\Day1Part1.h" />
-    <Text Include="input\day1_example.txt" />
-    <Text Include="input\day1_input.txt" />
     <ClCompile Include="src\day1\Day1Part2.cpp" />
     <ClInclude Include="src\day1\Day1Part2.h" />
   </ItemGroup>
   <ItemGroup Label="auto_generated">
     <ClCompile Include="src\day2\Day2Part1.cpp" />
     <ClInclude Include="src\day2\Day2Part1.h" />
-    <Text Include="input\day2_example.txt" />
-    <Text Include="input\day2_input.txt" />
     <ClCompile Include="src\day2\Day2Part2.cpp" />
     <ClInclude Include="src\day2\Day2Part2.h" />
+  </ItemGroup>
+  <ItemGroup Label="auto_generated">
+    <Text Include="input\day1part1_example.txt" />
+    <Text Include="input\day1part1_input.txt" />
+    <Text Include="input\day1part2_example.txt" />
+    <Text Include="input\day1part2_input.txt" />
   </ItemGroup>
 </Project>
