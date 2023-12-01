@@ -71,7 +71,6 @@ string& Utils::ltrim(string& s)
 
 string& Utils::trim(string& s)
 {
-	const char* ws = " \t\n\r\f\v";
 	return ltrim(rtrim(s));
 }
 
@@ -81,9 +80,16 @@ string& Utils::to_lower(std::string& s)
 	return s;
 }
 
-string& Utils::to_lower(const std::string& s)
+string Utils::to_lower(const std::string& s)
 {
 	std::string result{ s };
 	to_lower(result);
+	return result;
+}
+
+std::string Utils::reverse(const std::string& s)
+{
+	std::string result{ s };
+	std::reverse(result.begin(), result.end());
 	return result;
 }

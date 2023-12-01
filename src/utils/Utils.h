@@ -1,5 +1,9 @@
 #pragma once
 
+#include <memory>
+#include <vector>
+#include <string>
+
 class Utils
 {
 public:
@@ -18,6 +22,8 @@ public:
 
 	static std::string& to_lower(std::string& s);
 
-	static std::string& to_lower(const std::string& s);
+	static std::string to_lower(const std::string& s);
+
+	static std::string reverse(const std::string& s);
 };
 
