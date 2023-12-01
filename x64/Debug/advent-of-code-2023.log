@@ -1,9 +1,0 @@
-﻿  AoC2023.cpp
-  FileGenerator.cpp
-C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\src\framework\FileGenerator.cpp(83,68): warning C4100: 'part': unreferenced formal parameter
-C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\src\framework\FileGenerator.cpp(99,67): warning C4100: 'part': unreferenced formal parameter
-C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\src\framework\FileGenerator.cpp(99,58): warning C4100: 'day': unreferenced formal parameter
-C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\src\framework\FileGenerator.cpp(99,48): warning C4100: 'path': unreferenced formal parameter
-  Vcxproj.cpp
-  Generating Code...
-  advent-of-code-2023.vcxproj -> C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\x64\Debug\advent-of-code-2023.exe
