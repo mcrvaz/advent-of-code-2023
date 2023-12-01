@@ -18,9 +18,6 @@
     <ClCompile Include="src\AoC2023.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\day1\Day1Part1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\framework\FileGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,11 +33,17 @@
     <ClCompile Include="third_party\pugixml-1.14\src\pugixml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\framework\Vcxproj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\day2\Day2Part1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\day2\Day2Part2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\day1\Day1Part1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\framework\FileGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -65,11 +68,20 @@
     <ClInclude Include="third_party\pugixml-1.14\src\pugixml.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\framework\Vcxproj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\day2\Day2Part1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\day2\Day2Part2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="input\day1_input.txt" />
-    <Text Include="input\day1_example.txt" />
     <Text Include="src\framework\templates\day-src-template-cpp.txt" />
     <Text Include="src\framework\templates\day-src-template-h.txt" />
+    <Text Include="input\day2_example.txt" />
+    <Text Include="input\day2_input.txt" />
   </ItemGroup>
 </Project>

@@ -132,7 +132,6 @@
 		<ClCompile Include="src\framework\CommandLineInterface.cpp" />
 		<ClCompile Include="src\framework\Runner.cpp" />
 		<ClCompile Include="src\framework\FileGenerator.cpp" />
-		<ClCompile Include="src\day1\Day1Part1.cpp" />
 		<ClCompile Include="src\AoC2023.cpp" />
 		<ClCompile Include="src\utils\Utils.cpp" />
 		<ClCompile Include="third_party\pugixml-1.14\src\pugixml.cpp" />
@@ -142,7 +141,6 @@
 		<ClInclude Include="src\framework\CommandLineInterface.h" />
 		<ClInclude Include="src\framework\Runner.h" />
 		<ClInclude Include="src\framework\FileGenerator.h" />
-		<ClInclude Include="src\day1\Day1Part1.h" />
 		<ClInclude Include="src\utils\Utils.h" />
 		<ClInclude Include="third_party\CLI11.hpp" />
 		<ClInclude Include="third_party\inja.hpp" />
@@ -158,20 +156,18 @@
 	<ImportGroup Label="ExtensionTargets" />
 	<ItemGroup Label="auto_generated">
 		<ClCompile Include="src\day2\Day2Part1.cpp" />
-	</ItemGroup>
-	<ItemGroup Label="auto_generated">
 		<ClInclude Include="src\day2\Day2Part1.h" />
-	</ItemGroup>
-	<ItemGroup Label="auto_generated">
 		<Text Include="input\day2_example.txt" />
-	</ItemGroup>
-	<ItemGroup Label="auto_generated">
 		<Text Include="input\day2_input.txt" />
-	</ItemGroup>
-	<ItemGroup Label="auto_generated">
 		<ClCompile Include="src\day2\Day2Part2.cpp" />
+		<ClInclude Include="src\day2\Day2Part2.h" />
 	</ItemGroup>
 	<ItemGroup Label="auto_generated">
-		<ClInclude Include="src\day2\Day2Part2.h" />
+		<ClCompile Include="src\day1\Day1Part1.cpp" />
+		<ClInclude Include="src\day1\Day1Part1.h" />
+		<Text Include="input\day1_example.txt" />
+		<Text Include="input\day1_input.txt" />
+		<ClCompile Include="src\day1\Day1Part2.cpp" />
+		<ClInclude Include="src\day1\Day1Part2.h" />
 	</ItemGroup>
 </Project>
