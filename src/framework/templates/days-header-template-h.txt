@@ -1,0 +1,22 @@
+#pragma once
+
+{% for dayPart in dayParts %}
+#include "day{{ dayPart.first }}/Day{{ dayPart.first }}Part{{ dayPart.second }}.h";
+#include "day{{ dayPart.first }}/Day{{ dayPart.first }}Part{{ dayPart.second }}.h";
+{% endfor %}
+
+namespace AoC
+{
+	static void Execute(int day, int part)
+	{
+{% for dayPart in dayParts %}
+{% if loop.is_first %}
+		if (day == {{ dayPart.first }} && part == {{ dayPart.second }})
+			Day{{ dayPart.first }}Part{{ dayPart.second }}().solve();
+{% else %}
+		else if (day == {{ dayPart.first }} && part == {{ dayPart.second }})
+			Day{{ dayPart.first }}Part{{ dayPart.second }}().solve();
+{% endif %}
+{% endfor %}
+	}
+};
