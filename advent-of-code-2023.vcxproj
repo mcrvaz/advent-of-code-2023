@@ -130,7 +130,6 @@
 	</ItemDefinitionGroup>
 	<ItemGroup>
 		<ClCompile Include="src\framework\CommandLineInterface.cpp" />
-		<ClCompile Include="src\framework\Runner.cpp" />
 		<ClCompile Include="src\framework\FileGenerator.cpp" />
 		<ClCompile Include="src\AoC2023.cpp" />
 		<ClCompile Include="src\utils\Utils.cpp" />

@@ -27,6 +27,7 @@ void FileGenerator::CreateTemplate(int day)
 		Path path = CreateDefinitionFile(m_src, day, i);
 		if (!path.empty())
 			createdFiles.push_back(path);
+
 		path = CreateImplementationFile(m_src, day, i);
 		if (!path.empty())
 			createdFiles.push_back(path);
@@ -43,10 +44,12 @@ void FileGenerator::CreateTemplate(int day)
 	RegisterProjectFiles(createdFiles);
 }
 
+
 Path FileGenerator::CreateDefinitionFile(const Path& path, int day, int part) const
 {
 	return CreateSourceFile(path, "day-src-template-cpp.txt", ".cpp", day, part);
 }
+
 
 Path FileGenerator::CreateImplementationFile(const Path& path, int day, int part) const
 {
@@ -83,6 +86,7 @@ Path FileGenerator::CreateSourceFile(
 	return filePath;
 }
 
+
 Path FileGenerator::CreateInputFile(const Path& path, int day, int part, bool isExample) const
 {
 	const std::string suffix = isExample ? "example" : "input";
@@ -101,19 +105,15 @@ Path FileGenerator::CreateInputFile(const Path& path, int day, int part, bool is
 
 Path FileGenerator::CreateTestFile(const Path& path, int day, int part) const
 {
+	// TODO
 	return Path{};
 }
 
-void FileGenerator::RegisterRunnerFiles(const std::vector<std::filesystem::path>& files)
+
+void FileGenerator::RegisterRunnerFiles(const std::vector<std::filesystem::path>& files) const
 {
 	if (files.empty())
 		return;
-
-	inja::Environment env;
-	Path templatePath{ Path{ m_templates }.append("days-header-template-h.txt") };
-	Path outputPath{ Path{ m_src }.append("AoCDays.h") };
-	const inja::Template temp = env.parse_template(templatePath.string());
-	inja::json data;
 
 	const std::regex rgx("Day(\\w+)Part(\\w+)");
 	std::smatch matches;
@@ -144,9 +144,15 @@ void FileGenerator::RegisterRunnerFiles(const std::vector<std::filesystem::path>
 	for (const auto& file : newFiles)
 		allFiles.insert(file);
 
+	inja::Environment env;
+	Path templatePath{ Path{ m_templates }.append("days-header-template-h.txt") };
+	Path outputPath{ Path{ m_src }.append("AoCDays.h") };
+	const inja::Template temp = env.parse_template(templatePath.string());
+	inja::json data;
 	data["dayParts"] = std::move(allFiles);
 	env.write(temp, data, outputPath.string());
 }
+
 
 void FileGenerator::RegisterProjectFiles(const std::vector<Path>& registeredFiles)
 {
