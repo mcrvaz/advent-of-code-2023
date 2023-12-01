@@ -20,7 +20,7 @@ public:
 	std::filesystem::path GetVcxprojPath() const;
 
 	bool Load();
-	void RegisterFiles(const std::vector<std::filesystem::path>& files, bool save = false);
+	void RegisterProjectFiles(const std::vector<std::filesystem::path>& files, bool save = false);
 	void RegisterFile(const std::filesystem::path& file, bool save = false);
 	bool IsFileRegistered(const std::filesystem::path& file) const;
 	bool Save();

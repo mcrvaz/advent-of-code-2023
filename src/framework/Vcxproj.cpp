@@ -18,7 +18,7 @@ bool Vcxproj::Load()
 	return m_loaded;
 }
 
-void Vcxproj::RegisterFiles(const std::vector<Path>& files, bool save)
+void Vcxproj::RegisterProjectFiles(const std::vector<Path>& files, bool save)
 {
 	if (!m_loaded)
 		throw std::runtime_error{ std::format("Trying to register files before loading {}.", EXTENSION) };

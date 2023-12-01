@@ -6,6 +6,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LocalDebuggerCommandArguments>create --day 1</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <RemoteDebuggerCommandArguments>create --day 2</RemoteDebuggerCommandArguments>
+    <RemoteDebuggerCommandArguments>create --day 1</RemoteDebuggerCommandArguments>
   </PropertyGroup>
 </Project>

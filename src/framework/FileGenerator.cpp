@@ -4,6 +4,7 @@
 #include <inja.hpp>
 #include <pugixml.hpp>
 #include <unordered_set>
+#include <regex>
 
 using Path = std::filesystem::path;
 
@@ -11,7 +12,7 @@ FileGenerator::FileGenerator(const Path root)
 	: m_root{ root },
 	m_src{ Path{ root }.append("src") },
 	m_input{ Path{ root }.append("input") },
-	m_templates{ Path{ root }.append("src").append("framework").append("templates") },
+	m_templates{ Path{ root }.append("src/framework/templates") },
 	m_vcxproj{ root }
 {
 }
@@ -37,7 +38,7 @@ void FileGenerator::CreateTemplate(int day)
 		if (!path.empty())
 			createdFiles.push_back(path);
 	}
-	RegisterFiles(createdFiles);
+	RegisterProjectFiles(createdFiles);
 }
 
 Path FileGenerator::CreateDefinitionFile(const Path& path, int day, int part) const
@@ -101,8 +102,52 @@ Path FileGenerator::CreateTestFile(const Path& path, int day, int part) const
 	return Path{};
 }
 
-void FileGenerator::RegisterFiles(const std::vector<Path>& registeredFiles)
+void FileGenerator::RegisterRunnerFiles(const std::vector<std::filesystem::path>& files)
 {
+	if (files.empty())
+		return;
+
+	inja::Environment env;
+	Path templatePath{ Path{ m_templates }.append("days-header-template-h.txt") };
+	Path outputPath{ Path{ m_src }.append("AoCDays.h") };
+	const inja::Template temp = env.parse_template(templatePath.string());
+	inja::json data;
+
+	const std::regex rgx("Day(\\w+)Part(\\w+)");
+	std::smatch matches;
+	std::vector<std::pair<int, int>> existingDayFiles;
+	for (const auto& file : std::filesystem::recursive_directory_iterator(m_src))
+	{
+		if (!file.is_regular_file())
+			continue;
+
+		const std::string& pathStem = file.path().stem().string();
+		if (!std::regex_search(pathStem, matches, rgx))
+			continue;
+		existingDayFiles.push_back({ std::stoi(matches[1].str()), std::stoi(matches[2].str()) });
+	}
+
+	std::vector<std::pair<int, int>> newFiles;
+	for (const auto& file : files)
+	{
+		const std::string& pathStem = file.stem().string();
+		if (!std::regex_search(pathStem, matches, rgx))
+			continue;
+		newFiles.push_back({ std::stoi(matches[1].str()), std::stoi(matches[2].str()) });
+	}
+
+	std::vector<std::pair<int, int>> allFiles{};
+	allFiles.insert(std::end(existingDayFiles), std::begin(newFiles), std::end(newFiles));
+
+	data["dayParts"] = std::move(allFiles);
+	env.write(temp, data, outputPath.string());
+}
+
+void FileGenerator::RegisterProjectFiles(const std::vector<Path>& registeredFiles)
+{
+	if (registeredFiles.empty())
+		return;
+
 	m_vcxproj.Load();
-	m_vcxproj.RegisterFiles(registeredFiles, true);
+	m_vcxproj.RegisterProjectFiles(registeredFiles, true);
 }

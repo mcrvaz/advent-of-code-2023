@@ -29,7 +29,8 @@ protected:
 	std::filesystem::path CreateTestFile(const std::filesystem::path& path, int day, int part) const;
 	std::filesystem::path CreateInputFile(const std::filesystem::path& path, int day, int part, bool isExample) const;
 	std::filesystem::path GetVcxprojPath() const;
-	void RegisterFiles(const std::vector<std::filesystem::path>& files);
+	void RegisterRunnerFiles(const std::vector<std::filesystem::path>& files);
+	void RegisterProjectFiles(const std::vector<std::filesystem::path>& files);
 private:
 	const std::filesystem::path m_root;
 	const std::filesystem::path m_src;

@@ -1,22 +1,23 @@
 #pragma once
 
-{% for dayPart in dayParts %}
-#include "day{{ dayPart.first }}/Day{{ dayPart.first }}Part{{ dayPart.second }}.h";
-#include "day{{ dayPart.first }}/Day{{ dayPart.first }}Part{{ dayPart.second }}.h";
-{% endfor %}
+// This file is auto generated.
+
+## for dayPart in dayParts
+#include "day{{ at(dayPart, 0) }}/Day{{ at(dayPart, 0) }}Part{{ at(dayPart, 1) }}.h";
+## endfor
 
 namespace AoC
 {
 	static void Execute(int day, int part)
 	{
-{% for dayPart in dayParts %}
-{% if loop.is_first %}
-		if (day == {{ dayPart.first }} && part == {{ dayPart.second }})
-			Day{{ dayPart.first }}Part{{ dayPart.second }}().solve();
-{% else %}
-		else if (day == {{ dayPart.first }} && part == {{ dayPart.second }})
-			Day{{ dayPart.first }}Part{{ dayPart.second }}().solve();
-{% endif %}
-{% endfor %}
+## for dayPart in dayParts
+## if loop.is_first
+		if (day == {{ at(dayPart, 0) }} && part == {{ at(dayPart, 1) }})
+			Day{{ at(dayPart, 0) }}Part{{ at(dayPart, 1) }}().solve();
+## else
+		else if (day == {{ at(dayPart, 0) }} && part == {{ at(dayPart, 1) }})
+			Day{{ at(dayPart, 0) }}Part{{ at(dayPart, 1) }}().solve();
+## endif
+## endfor
 	}
 };
