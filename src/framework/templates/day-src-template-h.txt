@@ -1,0 +1,7 @@
+#pragma once
+
+class Day{{ day }}Part{{ part }}
+{
+public:
+	int solve();
+};

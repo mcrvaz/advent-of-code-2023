@@ -74,3 +74,16 @@ string& Utils::trim(string& s)
 	const char* ws = " \t\n\r\f\v";
 	return ltrim(rtrim(s));
 }
+
+string& Utils::to_lower(std::string& s)
+{
+	std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c) { return std::tolower(c); });
+	return s;
+}
+
+string& Utils::to_lower(const std::string& s)
+{
+	std::string result{ s };
+	to_lower(result);
+	return result;
+}

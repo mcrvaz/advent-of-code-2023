@@ -1,0 +1,6 @@
+#include "Day{{ day }}Part{{ part }}.h"
+
+int Day{{ day }}Part{{ part }}::solve()
+{
+	return -1;
+}

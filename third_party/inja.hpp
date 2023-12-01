@@ -1,3 +1,4 @@
+#pragma warning(push, 0)
 /*
   ___        _          Version 3.4.0
  |_ _|_ __  (_) __ _    https://github.com/pantor/inja
@@ -25,7 +26,7 @@ SOFTWARE.
 #ifndef INCLUDE_INJA_INJA_HPP_
 #define INCLUDE_INJA_INJA_HPP_
 
-#include <nlohmann/json.hpp>
+#include <json.hpp>
 
 namespace inja {
 #ifndef INJA_DATA_TYPE
@@ -2935,3 +2936,4 @@ inline void render_to(std::ostream& os, std::string_view input, const json& data
 
 
 #endif // INCLUDE_INJA_INJA_HPP_
+#pragma warning(pop)

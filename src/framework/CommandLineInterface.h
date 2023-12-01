@@ -11,20 +11,20 @@ namespace MyCLI
 	class Options
 	{
 	public:
-		OperationType OpType;
-		int Day;
-		int Part;
+		const OperationType OpType;
+		const int Day;
+		const int Part;
 
-		void Print();
+		void Print() const;
 	};
 
 	class Parser
 	{
 	public:
-		Parser(int argc, char** argv);
-		Options Parse();
+		Parser(int argc, char** argv) noexcept;
+		Options Parse() const;
 	private:
-		int m_argc;
-		char** m_argv;
+		const int m_argc;
+		const char *const *m_argv;
 	};
 }

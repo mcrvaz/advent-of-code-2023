@@ -2,5 +2,5 @@
 
 int Day1Part1::solve()
 {
-	return 0;
+	return -1;
 }

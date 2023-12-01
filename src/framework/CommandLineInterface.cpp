@@ -3,14 +3,13 @@
 #include <iostream>
 #include <string>
 
-MyCLI::Parser::Parser(int argc, char** argv) : m_argc{ argc }, m_argv{ argv }
+MyCLI::Parser::Parser(int argc, char** argv) noexcept : m_argc{ argc }, m_argv{ argv }
 {
 }
 
-MyCLI::Options MyCLI::Parser::Parse()
+MyCLI::Options MyCLI::Parser::Parse() const
 {
 	CLI::App app{ "Advent of Code 2023" };
-
 
 	CLI::App* execute = app.add_subcommand("execute", "Execute a puzzle");
 	CLI::App* create = app.add_subcommand("create", "Create template for a new puzzle");
@@ -25,7 +24,6 @@ MyCLI::Options MyCLI::Parser::Parse()
 		->required()
 		->check(CLI::Range(1, 25));
 
-	// TODO make this option invalid when subcommand is "create"
 	int part{};
 	execute->add_option("-p,--part", part, "Part to execute")
 		->required()
@@ -34,16 +32,15 @@ MyCLI::Options MyCLI::Parser::Parse()
 	app.parse(m_argc, m_argv);
 
 	OperationType op{};
-	CLI::App* subcommand = app.get_subcommand(0);
-	if (subcommand == execute)
+	if (app.got_subcommand(execute))
 		op = OperationType::execute;
-	else if (subcommand == create)
+	else if (app.got_subcommand(create))
 		op = OperationType::create;
 
 	return Options{ op, day, part };
 }
 
-void MyCLI::Options::Print()
+void MyCLI::Options::Print() const
 {
 	std::cout << "OpType " << static_cast<int>(OpType) << " Day " << Day << " Part " << Part << '\n';
 }

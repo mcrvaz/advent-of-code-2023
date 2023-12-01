@@ -1,3 +1,4 @@
+#pragma warning(push, 0)
 // CLI11: Version 2.3.2
 // Originally designed by Henry Schreiner
 // https://github.com/CLIUtils/CLI11
@@ -9684,3 +9685,4 @@ CLI11_INLINE std::string Formatter::make_option_usage(const Option *opt) const {
 
 
 } // namespace CLI
+#pragma warning(pop)
