@@ -13,6 +13,7 @@ int main(int argc, char** argv)
 	switch (options.OpType)
 	{
 	case MyCLI::OperationType::execute:
+		AoC::Execute(options.Day, options.Part);
 		break;
 	case MyCLI::OperationType::create:
 		auto fileGenerator = FileGenerator(std::filesystem::current_path());

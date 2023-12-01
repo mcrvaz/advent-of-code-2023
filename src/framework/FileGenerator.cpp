@@ -5,6 +5,7 @@
 #include <pugixml.hpp>
 #include <unordered_set>
 #include <regex>
+#include <set>
 
 using Path = std::filesystem::path;
 
@@ -38,6 +39,7 @@ void FileGenerator::CreateTemplate(int day)
 		if (!path.empty())
 			createdFiles.push_back(path);
 	}
+	RegisterRunnerFiles(createdFiles);
 	RegisterProjectFiles(createdFiles);
 }
 
@@ -115,7 +117,7 @@ void FileGenerator::RegisterRunnerFiles(const std::vector<std::filesystem::path>
 
 	const std::regex rgx("Day(\\w+)Part(\\w+)");
 	std::smatch matches;
-	std::vector<std::pair<int, int>> existingDayFiles;
+	std::set<std::pair<int, int>> existingDayFiles;
 	for (const auto& file : std::filesystem::recursive_directory_iterator(m_src))
 	{
 		if (!file.is_regular_file())
@@ -124,20 +126,23 @@ void FileGenerator::RegisterRunnerFiles(const std::vector<std::filesystem::path>
 		const std::string& pathStem = file.path().stem().string();
 		if (!std::regex_search(pathStem, matches, rgx))
 			continue;
-		existingDayFiles.push_back({ std::stoi(matches[1].str()), std::stoi(matches[2].str()) });
+		existingDayFiles.insert({ std::stoi(matches[1].str()), std::stoi(matches[2].str()) });
 	}
 
-	std::vector<std::pair<int, int>> newFiles;
+	std::set<std::pair<int, int>> newFiles;
 	for (const auto& file : files)
 	{
 		const std::string& pathStem = file.stem().string();
 		if (!std::regex_search(pathStem, matches, rgx))
 			continue;
-		newFiles.push_back({ std::stoi(matches[1].str()), std::stoi(matches[2].str()) });
+		newFiles.insert({ std::stoi(matches[1].str()), std::stoi(matches[2].str()) });
 	}
 
-	std::vector<std::pair<int, int>> allFiles{};
-	allFiles.insert(std::end(existingDayFiles), std::begin(newFiles), std::end(newFiles));
+	std::set<std::pair<int, int>> allFiles{};
+	for (const auto& file : existingDayFiles)
+		allFiles.insert(file);
+	for (const auto& file : newFiles)
+		allFiles.insert(file);
 
 	data["dayParts"] = std::move(allFiles);
 	env.write(temp, data, outputPath.string());

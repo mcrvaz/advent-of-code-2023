@@ -1,9 +1,9 @@
-#pragma once
-
 // This file is auto generated.
 
+#pragma once
+
 ## for dayPart in dayParts
-#include "day{{ at(dayPart, 0) }}/Day{{ at(dayPart, 0) }}Part{{ at(dayPart, 1) }}.h";
+#include "day{{ at(dayPart, 0) }}/Day{{ at(dayPart, 0) }}Part{{ at(dayPart, 1) }}.h"
 ## endfor
 
 namespace AoC
