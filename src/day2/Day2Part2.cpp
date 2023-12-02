@@ -29,13 +29,13 @@ int Day2Part2::solve()
 	int result = std::reduce(
 		colorCount.begin(),
 		colorCount.end(),
-		0l,
+		0,
 		[](int acc, const std::unordered_map<std::string, int>& game)
 		{
 			int power = std::reduce(
 				game.begin(),
 				game.end(),
-				1l,
+				1,
 				[](int acc, const std::pair<std::string, int>& p) { return acc * p.second; }
 			);
 			return acc + power;
