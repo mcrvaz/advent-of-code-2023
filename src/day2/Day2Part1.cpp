@@ -25,8 +25,8 @@ int Day2Part1::solve()
 		auto lineIter = line.cbegin();
 		while (std::regex_search(lineIter, line.end(), matches, rgx))
 		{
-			int current = colorCount[i][matches[2]];
-			colorCount[i][matches[2]] = std::max(current, stoi(matches[1].str()));
+			int& current = colorCount[i][matches[2]];
+			current = std::max(current, stoi(matches[1].str()));
 			lineIter = matches[0].second;
 		}
 	}
@@ -54,6 +54,7 @@ int Day2Part1::solve()
 		[](int acc, int gameId) { return acc + gameId + 1; }
 	);
 
+	// answer 2447
 	std::cout << result;
 
 	return result;
