@@ -1,7 +1,7 @@
 #include "Day2Part2.h"
+#include "../utils/Utils.h"
 #include <vector>
 #include <string>
-#include "../utils/Utils.h"
 #include <regex>
 #include <unordered_map>
 #include <iostream>
@@ -31,13 +31,18 @@ int Day2Part2::solve()
 		}
 	}
 
-	long result = std::reduce(
+	int result = std::reduce(
 		colorCount.begin(),
 		colorCount.end(),
 		0l,
-		[](long acc, const std::unordered_map<std::string, int>& game)
+		[](int acc, const std::unordered_map<std::string, int>& game)
 		{
-			long power = std::reduce(game.begin(), game.end(), 1l, [](long acc, const std::pair<std::string, int>& p) { return acc * p.second; });
+			int power = std::reduce(
+				game.begin(),
+				game.end(),
+				1l,
+				[](int acc, const std::pair<std::string, int>& p) { return acc * p.second; }
+			);
 			return acc + power;
 		}
 	);

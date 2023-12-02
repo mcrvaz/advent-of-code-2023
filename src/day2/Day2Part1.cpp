@@ -1,7 +1,7 @@
 #include "Day2Part1.h"
+#include "../utils/Utils.h"
 #include <vector>
 #include <string>
-#include "../utils/Utils.h"
 #include <regex>
 #include <unordered_map>
 #include <iostream>
