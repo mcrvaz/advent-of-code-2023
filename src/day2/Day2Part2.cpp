@@ -10,11 +10,6 @@
 
 int Day2Part2::solve()
 {
-	const std::unordered_map<std::string, int> reference{
-		{ "red", 12 },
-		{ "green", 13 },
-		{ "blue", 14 }
-	};
 	const std::vector<std::string> lines = *Utils::read_lines("input/day2part2_input.txt").get();
 	const std::regex rgx("(\\d+) (red|green|blue)");
 	std::smatch matches;
