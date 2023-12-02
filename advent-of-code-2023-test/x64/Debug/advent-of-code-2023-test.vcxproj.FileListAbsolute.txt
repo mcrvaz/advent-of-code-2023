@@ -1,0 +1,1 @@
+C:\Users\marce\OneDrive\Documents\C++ Projects\advent-of-code-2023\advent-of-code-2023-test\x64\Debug\advent-of-code-2023-test.vcxproj.CopyComplete
