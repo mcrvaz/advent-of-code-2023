@@ -180,4 +180,14 @@
 		<Text Include="input\day2part2_example.txt" />
 		<Text Include="input\day2part2_input.txt" />
 	</ItemGroup>
+	<ItemGroup Label="auto_generated">
+		<ClCompile Include="src\day3\Day3Part1.cpp" />
+		<ClInclude Include="src\day3\Day3Part1.h" />
+		<Text Include="input\day3part1_example.txt" />
+		<Text Include="input\day3part1_input.txt" />
+		<ClCompile Include="src\day3\Day3Part2.cpp" />
+		<ClInclude Include="src\day3\Day3Part2.h" />
+		<Text Include="input\day3part2_example.txt" />
+		<Text Include="input\day3part2_input.txt" />
+	</ItemGroup>
 </Project>
