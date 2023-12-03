@@ -131,4 +131,3 @@ bool Day3Part1::IsNumber(char c)
 {
 	return c >= '0' && c <= '9';
 }
-
