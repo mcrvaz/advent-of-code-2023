@@ -14,10 +14,10 @@ double Day4Part1::solve()
 	double result{};
 	for (const auto& line : lines)
 	{
-		std::vector<std::string> allValues = Utils::split(line, ":");
-		std::vector<std::string> splitValues = Utils::split(allValues[1], "|");
-		std::vector<std::string> winningValuesStr = Utils::split(splitValues[0], " ");
-		std::vector<std::string> selectedValuesStr = Utils::split(splitValues[1], " ");
+		const std::vector<std::string> allValues = Utils::split(line, ":");
+		const std::vector<std::string> splitValues = Utils::split(allValues[1], "|");
+		const std::vector<std::string> winningValuesStr = Utils::split(splitValues[0], " ");
+		const std::vector<std::string> selectedValuesStr = Utils::split(splitValues[1], " ");
 
 		auto winningValuesRange = winningValuesStr
 			| std::views::filter([](const std::string& x) { return !Utils::is_empty_or_ws(x); })
