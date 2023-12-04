@@ -24,14 +24,14 @@ double Day4Part1::solve()
 			| std::views::transform([](const std::string& x) { return stoi(x); });
 
 		std::set<int> winningValues{};
-		for (const auto& i : winningValuesRange)
+		for (const int i : winningValuesRange)
 			winningValues.insert(i);
 
 		auto selectedValuesRange = selectedValuesStr
 			| std::views::filter([](const std::string& x) { return !Utils::is_empty_or_ws(x); })
 			| std::views::transform([](const std::string& x) { return stoi(x); });
 		std::set<int> selectedValues{};
-		for (const auto& i : selectedValuesRange)
+		for (const int i : selectedValuesRange)
 			selectedValues.insert(i);
 
 		std::vector<int> intersection{};
@@ -41,7 +41,7 @@ double Day4Part1::solve()
 			std::back_inserter(intersection)
 		);
 
-		int winningNumbersCount = std::max(0, static_cast<int>(intersection.size()));
+		size_t winningNumbersCount = intersection.size();
 		if (winningNumbersCount > 0)
 		{
 			double points = std::pow(2, winningNumbersCount - 1);
