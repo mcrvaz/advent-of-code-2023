@@ -14,7 +14,7 @@ int Day4Part2::solve()
 {
 	const std::vector<std::string> lines = *Utils::read_lines("input/day4part2_input.txt").get();
 
-	std::unordered_map<int, int> cardCount{};
+	std::vector<int> cardCount(lines.size() + 1);
 	for (const auto& line : lines)
 	{
 		const std::vector<std::string> allValues = Utils::split(line, ":");
@@ -38,7 +38,7 @@ int Day4Part2::solve()
 		cardCount.begin(),
 		cardCount.end(),
 		0,
-		[](int acc, const std::pair<int, int>& p) { return acc + p.second; }
+		[](int acc, int v) { return acc + v; }
 	);
 	result += lines.size();
 
