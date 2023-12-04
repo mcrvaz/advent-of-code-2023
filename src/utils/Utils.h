@@ -25,5 +25,7 @@ public:
 	static std::string to_lower(const std::string& s);
 
 	static std::string reverse(const std::string& s);
+
+	static bool is_empty_or_ws(const std::string& s);
 };
 

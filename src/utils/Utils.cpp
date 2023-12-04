@@ -76,7 +76,7 @@ string& Utils::trim(string& s)
 
 string& Utils::to_lower(std::string& s)
 {
-	std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c) { return std::tolower(c); });
+	std::transform(s.begin(), s.end(), s.begin(), [](char c) { return std::tolower(c); });
 	return s;
 }
 
@@ -87,9 +87,21 @@ string Utils::to_lower(const std::string& s)
 	return result;
 }
 
-std::string Utils::reverse(const std::string& s)
+string Utils::reverse(const std::string& s)
 {
 	std::string result{ s };
 	std::reverse(result.begin(), result.end());
 	return result;
+}
+
+bool Utils::is_empty_or_ws(const std::string& s)
+{
+	if (s.empty())
+		return true;
+	for (const char c : s)
+	{
+		if (!std::isspace(c))
+			return false;
+	}
+	return true;
 }
