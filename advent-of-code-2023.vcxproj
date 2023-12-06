@@ -210,4 +210,14 @@
 		<Text Include="input\day5part2_example.txt" />
 		<Text Include="input\day5part2_input.txt" />
 	</ItemGroup>
+	<ItemGroup Label="auto_generated">
+		<ClCompile Include="src\day6\Day6Part1.cpp" />
+		<ClInclude Include="src\day6\Day6Part1.h" />
+		<Text Include="input\day6part1_example.txt" />
+		<Text Include="input\day6part1_input.txt" />
+		<ClCompile Include="src\day6\Day6Part2.cpp" />
+		<ClInclude Include="src\day6\Day6Part2.h" />
+		<Text Include="input\day6part2_example.txt" />
+		<Text Include="input\day6part2_input.txt" />
+	</ItemGroup>
 </Project>

@@ -12,6 +12,8 @@
 #include "day4/Day4Part2.h"
 #include "day5/Day5Part1.h"
 #include "day5/Day5Part2.h"
+#include "day6/Day6Part1.h"
+#include "day6/Day6Part2.h"
 
 namespace AoC
 {
@@ -37,5 +39,9 @@ namespace AoC
 			Day5Part1().solve();
 		else if (day == 5 && part == 2)
 			Day5Part2().solve();
+		else if (day == 6 && part == 1)
+			Day6Part1().solve();
+		else if (day == 6 && part == 2)
+			Day6Part2().solve();
 	}
 };

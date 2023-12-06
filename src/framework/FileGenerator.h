@@ -70,7 +70,7 @@ protected:
 		int part
 	) const;
 
-	std::filesystem::path CreateTestFile(const std::filesystem::path& path, int day, int part) const;
+	//std::filesystem::path CreateTestFile(const std::filesystem::path& path, int day, int part) const;
 
 	/// <summary>
 	/// Creates input files for the provided day and part.

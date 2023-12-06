@@ -70,8 +70,7 @@ void Day5Part1::parse(
 			continue;
 		}
 
-		std::stringstream ss(line);
-		std::string word;
+		ss = std::stringstream(line);
 		ss >> word;
 		int64_t DestinationStart{ stoll(word) };
 		ss >> word;

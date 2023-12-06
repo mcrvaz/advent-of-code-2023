@@ -40,7 +40,7 @@ int Day4Part2::solve()
 		0,
 		[](int acc, int v) { return acc + v; }
 	);
-	result += lines.size();
+	result += static_cast<int>(lines.size());
 
 	// answer 8805731
 	std::cout << result;

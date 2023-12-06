@@ -103,11 +103,11 @@ Path FileGenerator::CreateInputFile(const Path& path, int day, int part, bool is
 	return filePath;
 }
 
-Path FileGenerator::CreateTestFile(const Path& path, int day, int part) const
-{
-	// TODO
-	return Path{};
-}
+//Path FileGenerator::CreateTestFile(const Path& path, int day, int part) const
+//{
+//	// TODO
+//	return Path{};
+//}
 
 
 void FileGenerator::RegisterRunnerFiles(const std::vector<std::filesystem::path>& files) const
