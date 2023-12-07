@@ -14,7 +14,7 @@ int64_t Day5Part2::solve()
 {
 	std::vector<Range> seeds{};
 	std::vector<std::set<ConversionMapEntry>> maps{};
-	parse("input/day5part2_example.txt", seeds, maps);
+	parse("input/day5part2_input.txt", seeds, maps);
 
 	std::vector<Range> input{ seeds };
 	std::vector<Range> output{};
@@ -41,53 +41,30 @@ std::vector<Day5Part2::Range> Day5Part2::GetMappedRange(
 	while (!input.empty())
 	{
 		Range currentRange{ input.front() };
+		Range overlap{};
 		input.erase(input.begin());
-		for (const auto& mapEntry : map)
+		auto mapEntryIter = std::find_if(
+			map.begin(),
+			map.end(),
+			[&currentRange, &overlap](const ConversionMapEntry& entry) { return entry.Source.Overlap(currentRange, overlap); }
+		);
+		if (mapEntryIter == map.end())
 		{
-			Range overlap{};
-			const Range source{ mapEntry.Source };
-			if (currentRange.Overlap(source, overlap))
-			{
-				// example [74,88] and [64,77]
-				if (currentRange.Start >= source.Start && currentRange.End > source.End)
-				{
-					input.push_back(Range(source.End + 1, currentRange.End));
-					output.push_back(mapEntry.Apply(overlap));
-				}
-				// example [47,57] and [56,93]
-				else if (currentRange.Start < source.Start && currentRange.End <= source.End)
-				{
-					input.push_back(Range(currentRange.Start, source.Start - 1));
-					output.push_back(mapEntry.Apply(overlap));
-				}
-				// example [54,97] and [56,93]
-				else if (currentRange.Start < source.Start && currentRange.End > source.End)
-				{
-					if (currentRange.Start < source.Start)
-					{
-						input.push_back(Range(currentRange.Start, source.Start - 1));
-						input.push_back(Range(source.Start, currentRange.End));
-					}
-					else
-					{
-						input.push_back(Range(currentRange.Start, source.End));
-						input.push_back(Range(source.End + 1, currentRange.End));
-					}
-					output.push_back(mapEntry.Apply(overlap));
-				}
-				// example [58,62] and [56,93] - fully contained
-				else
-				{
-					output.push_back(mapEntry.Apply(currentRange));
-				}
-
-				break;
-			}
+			output.push_back(currentRange);
+			continue;
 		}
 
-		// no mappings found, continue with current input
-		if (output.empty())
-			output.push_back(currentRange);
+		const ConversionMapEntry& mapEntry = *mapEntryIter;
+		const Range source{ mapEntry.Source };
+		const Range destination{ mapEntry.Destination };
+		int64_t offset = destination.Start - source.Start;
+		output.push_back(Range(overlap.Start + offset, overlap.End + offset));
+
+		if (currentRange.Start < source.Start)
+			input.push_back(Range(currentRange.Start, overlap.Start - 1));
+
+		if (currentRange.End > source.End)
+			input.push_back(Range(overlap.End + 1, currentRange.End));
 	}
 	return output;
 }
