@@ -43,4 +43,9 @@ private:
 		std::vector<Range>& seedsOut,
 		std::vector<std::set<ConversionMapEntry>>& mapsOut
 	) const;
+
+	std::vector<Range> GetMappedRange(
+		const std::set<ConversionMapEntry>& map,
+		std::vector<Range>& input
+	);
 };

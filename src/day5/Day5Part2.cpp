@@ -16,41 +16,80 @@ int64_t Day5Part2::solve()
 	std::vector<std::set<ConversionMapEntry>> maps{};
 	parse("input/day5part2_example.txt", seeds, maps);
 
-	std::vector<Range> locations{};
-	std::vector<Range> inputs{ seeds };
-	while (!inputs.empty())
+	std::vector<Range> input{ seeds };
+	std::vector<Range> output{};
+	for (const auto& map : maps)
 	{
-		const Range seedRange = inputs.front();
-		inputs.erase(inputs.begin());
-
-		Range currentRange{ seedRange };
-		for (const auto& map : maps)
-		{
-			for (const auto& mapEntry : map)
-			{
-				if (mapEntry.Source.Contains(currentRange))
-				{
-
-					break;
-				}
-
-				Range overlap{};
-				if (currentRange.Overlap(mapEntry.Source, overlap))
-				{
-					currentRange = mapEntry.Apply(overlap);
-					break;
-				}
-			}
-		}
-		locations.push_back(currentRange);
+		output = GetMappedRange(map, input);
+		input = output;
 	}
 
-	auto locationsIter = std::views::transform(locations, [](const Range& r) { return r.Start; });
-	int64_t result = *(std::ranges::min_element(locationsIter));
+	auto outputIter = std::views::transform(output, [](const Range& r) { return r.Start; });
+	int64_t result = *(std::ranges::min_element(outputIter));
 
 	std::cout << result;
 
 	return result;
+}
+
+std::vector<Day5Part2::Range> Day5Part2::GetMappedRange(
+	const std::set<ConversionMapEntry>& map,
+	std::vector<Day5Part2::Range>& input
+)
+{
+	std::vector<Range> output{};
+	while (!input.empty())
+	{
+		Range currentRange{ input.front() };
+		input.erase(input.begin());
+		for (const auto& mapEntry : map)
+		{
+			Range overlap{};
+			const Range source{ mapEntry.Source };
+			if (currentRange.Overlap(source, overlap))
+			{
+				// example [74,88] and [64,77]
+				if (currentRange.Start >= source.Start && currentRange.End > source.End)
+				{
+					input.push_back(Range(source.End + 1, currentRange.End));
+					output.push_back(mapEntry.Apply(overlap));
+				}
+				// example [47,57] and [56,93]
+				else if (currentRange.Start < source.Start && currentRange.End <= source.End)
+				{
+					input.push_back(Range(currentRange.Start, source.Start - 1));
+					output.push_back(mapEntry.Apply(overlap));
+				}
+				// example [54,97] and [56,93]
+				else if (currentRange.Start < source.Start && currentRange.End > source.End)
+				{
+					if (currentRange.Start < source.Start)
+					{
+						input.push_back(Range(currentRange.Start, source.Start - 1));
+						input.push_back(Range(source.Start, currentRange.End));
+					}
+					else
+					{
+						input.push_back(Range(currentRange.Start, source.End));
+						input.push_back(Range(source.End + 1, currentRange.End));
+					}
+					output.push_back(mapEntry.Apply(overlap));
+				}
+				// example [58,62] and [56,93] - fully contained
+				else
+				{
+					output.push_back(mapEntry.Apply(currentRange));
+				}
+
+				break;
+			}
+		}
+
+		// no mappings found, continue with current input
+		if (output.empty())
+			output.push_back(currentRange);
+	}
+	return output;
 }
 
 void Day5Part2::parse(
@@ -115,7 +154,7 @@ Day5Part2::Range::Range(int64_t start, int64_t end) : Start{ start }, End{ end }
 
 Day5Part2::Range Day5Part2::Range::FromLength(int64_t start, int64_t length)
 {
-	return Range{ start, start + length };
+	return Range{ start, start + length - 1 };
 }
 
 bool Day5Part2::Range::Overlap(const Day5Part2::Range& other, Day5Part2::Range& overlapOut) const
@@ -129,12 +168,18 @@ bool Day5Part2::Range::Overlap(const Day5Part2::Range& other, Day5Part2::Range& 
 
 bool Day5Part2::Range::Contains(const Range& other) const
 {
-	return Start >= other.Start && End >= other.End;
+	return Start <= other.Start && End >= other.End;
 }
 
 Day5Part2::Range Day5Part2::ConversionMapEntry::Apply(const Range& range) const
 {
-	const int64_t start = Destination.Start + range.Start - Source.Start;
-	const int64_t end = Destination.Start + range.End - Source.Start;
+	// G = (((S - Smin)*(Dmax - Dmin))/(Smax - Smin)) + Dmin
+	auto RangeLerp = [this](int64_t v)
+		{
+			return (((v - Source.Start) * (Destination.End - Destination.Start)) / (Source.End - Source.Start)) + Destination.Start;
+		};
+
+	const int64_t start = RangeLerp(range.Start);
+	const int64_t end = RangeLerp(range.End);
 	return Range(start, end);
 }

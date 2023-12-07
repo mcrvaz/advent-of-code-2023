@@ -36,7 +36,7 @@ int64_t Day6Part2::solve()
 		double root2 = (-b - std::sqrt(determinant)) / 2 * a;
 		double r1 = std::ceil(root1);
 		double r2 = std::floor(root2);
-		result = std::abs(r2 - r1 + 1);
+		result = static_cast<int64_t>(std::abs(r2 - r1 + 1));
 	}
 	else
 	{
