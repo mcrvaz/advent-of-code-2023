@@ -47,6 +47,5 @@ public:
 
 	int64_t solve();
 private:
-	void insert(std::vector<Hand>& vec, const Hand& value);
 	std::vector<Hand> parse(const std::string& path);
 };

@@ -9,21 +9,20 @@
 #include <unordered_map>
 #include <set>
 #include <iterator>
+#include <algorithm>
 
 using Hand = Day7Part1::Hand;
 
 int64_t Day7Part1::solve()
 {
 	std::vector<Hand> hands{ parse("input/day7part1_input.txt") };
-	std::vector<Hand> sorted{};
-	for (const auto& h : hands)
-		insert(sorted, h);
+	std::sort(hands.begin(), hands.end());
 
 	int64_t winnings{};
-	size_t size{ sorted.size() };
+	size_t size{ hands.size() };
 	for (size_t i = 0; i < size; i++)
 	{
-		const Hand& hand = sorted[i];
+		const Hand& hand = hands[i];
 		const size_t rank = i + 1;
 		winnings += rank * hand.Bid();
 	}
@@ -56,11 +55,6 @@ bool Day7Part1::Hand::operator<(const Hand& rhs) const
 	}
 
 	return m_type < rhs.m_type;
-}
-
-void Day7Part1::insert(std::vector<Hand>& vec, const Hand& value) {
-	auto it = std::lower_bound(vec.begin(), vec.end(), value);
-	vec.insert(it, value);
 }
 
 std::vector<Hand> Day7Part1::parse(const std::string& path)
