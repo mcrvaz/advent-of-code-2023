@@ -26,6 +26,7 @@ int Day8Part1::solve()
 		steps++;
 	}
 
+	// answer 19637
 	std::cout << steps;
 
 	return steps;
