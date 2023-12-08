@@ -16,13 +16,10 @@ int64_t Day8Part2::solve()
 	std::string directions{};
 	std::unordered_map<std::string, std::pair<std::string, std::string>> map{};
 	parse("input/day8part2_input.txt", directions, map);
-
 	auto iter = map
 		| std::views::filter([](const auto& pair) { return EndsWithChar(pair.first, 'A'); })
 		| std::views::transform([](const auto& pair) { return pair.first; });
-	std::vector<std::string> currentKeys{};
-	for (const std::string& i : iter)
-		currentKeys.push_back(i);
+	std::vector<std::string> currentKeys{ std::begin(iter), std::end(iter) };
 
 	std::vector<int> steps{};
 	for (const auto& currentKey : currentKeys)
