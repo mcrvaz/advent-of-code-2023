@@ -52,6 +52,7 @@ int64_t Day9Part1::solve()
 		}
 	}
 
+	// answer 1884768153
 	std::cout << result;
 
 	return result;

@@ -7,5 +7,6 @@ class Day9Part1
 {
 public:
 	int64_t solve();
+private:
 	void parse(const std::string& path, std::vector<std::vector<int64_t>>& inputOut) const;
 };
