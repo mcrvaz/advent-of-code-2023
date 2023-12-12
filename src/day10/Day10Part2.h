@@ -17,11 +17,14 @@ public:
 
 	int solve();
 private:
-	int GetPolygonArea(std::vector<std::pair<int, int>> polygon) const;
-	void BFS(
+	int GetPolygonArea(
+		std::vector<std::pair<int, int>> polygon
+	) const;
+	void DFS(
 		const std::vector<std::string>& grid,
 		const std::pair<int, int>& index,
-		std::unordered_set<std::pair<int, int>>& visited
+		std::unordered_set<std::pair<int, int>>& visited,
+		std::vector<std::pair<int, int>>& path
 	) const;
 	std::pair<int, int> GetStartingPosition(const std::vector<std::string>& lines) const;
 };

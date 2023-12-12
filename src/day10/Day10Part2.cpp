@@ -46,7 +46,7 @@ const std::unordered_map<char, std::vector<std::pair<int, int>>> Day10Part2::VAL
 
 int Day10Part2::solve()
 {
-	const std::vector<std::string> lines = *Utils::read_lines("input/day10part2_example.txt").get();
+	const std::vector<std::string> lines = *Utils::read_lines("input/day10part2_input.txt").get();
 
 	// Pick's theorem
 	// "i" is the number of integer points interior to the polygon
@@ -57,11 +57,19 @@ int Day10Part2::solve()
 	// i = A - (b/2) + 1
 	const std::pair<int, int> start = GetStartingPosition(lines);
 	std::unordered_set<std::pair<int, int>> visited;
-	BFS(lines, start, visited);
-	int pointsOnBoundary = static_cast<int>(visited.size());
+	std::vector<std::pair<int, int>> path;
+	DFS(lines, start, visited, path);
+	int pointsOnBoundary = static_cast<int>(path.size());
 
+	// polygon must be ordered correctly
 	std::vector<std::pair<int, int>> polygon{};
-	polygon.insert(polygon.end(), visited.begin(), visited.end());
+	for (const auto& [x, y] : path)
+	{
+		char c = lines.at(x).at(y);
+		if (c == '-' || c == '|')
+			continue;
+		polygon.push_back({ x,y });
+	}
 	int area = GetPolygonArea(polygon);
 
 	int result = area - (pointsOnBoundary / 2) + 1;
@@ -69,12 +77,14 @@ int Day10Part2::solve()
 	return result;
 }
 
-int Day10Part2::GetPolygonArea(std::vector<std::pair<int, int>> polygon) const
+int Day10Part2::GetPolygonArea(
+	std::vector<std::pair<int, int>> polygon
+) const
 {
 	// Shoelace formula
 	// Sum of the 2x2 matrix determinants
-	// A = 1/2 * |x0 x1| + |x1 x2| + |xn x1|
-	//           |y0 y1|   |y1 y2|   |yn y1|
+	// A = 1/2 * |x0 x1| + |x1 x2| + ... + |xn x1|
+	//           |y0 y1|   |y1 y2|         |yn y1|
 	auto MatrixDeterminant = [](const std::pair<int, int> p1, const std::pair<int, int> p2) {
 		const auto& [x0, y0] = p1;
 		const auto& [x1, y1] = p2;
@@ -89,18 +99,20 @@ int Day10Part2::GetPolygonArea(std::vector<std::pair<int, int>> polygon) const
 	return std::abs(area) / 2;
 }
 
-void Day10Part2::BFS(
+void Day10Part2::DFS(
 	const std::vector<std::string>& grid,
 	const std::pair<int, int>& start,
-	std::unordered_set<std::pair<int, int>>& visited
+	std::unordered_set<std::pair<int, int>>& visited,
+	std::vector<std::pair<int, int>>& path
 ) const
 {
-	std::deque<std::pair<int, int>> q{ start };
+	std::deque<std::pair<int, int>> stack{ start };
 	visited.insert(start);
-	while (!q.empty())
+	path.push_back(start);
+	while (!stack.empty())
 	{
-		const std::pair<int, int> parentIndex = q.front();
-		q.pop_front();
+		const std::pair<int, int> parentIndex = stack.back();
+		stack.pop_back();
 		const char parent = grid.at(parentIndex.first).at(parentIndex.second);
 		const auto& parentValidMovements = Day10Part2::VALID_MOVEMENTS.at(parent);
 		for (const std::pair<int, int>& mov : parentValidMovements)
@@ -132,7 +144,8 @@ void Day10Part2::BFS(
 				continue;
 
 			visited.insert(childIndex);
-			q.push_back(childIndex);
+			path.push_back(childIndex);
+			stack.push_back(childIndex);
 		}
 	}
 }
